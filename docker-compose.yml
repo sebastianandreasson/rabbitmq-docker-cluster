@@ -1,0 +1,32 @@
+version: '2'
+services:
+  node1:
+    build: ./rabbitmq-node
+    hostname: node1
+    environment:
+      - RABBITMQ_ERLANG_COOKIE='supersecret'
+    ports:
+        - "5672:5672"
+        - "15672:15672"
+  node2:
+    build: ./rabbitmq-node
+    hostname: node2
+    environment:
+      - CLUSTER_WITH=node1
+      - RABBITMQ_ERLANG_COOKIE='supersecret'
+    links:
+    - node1
+    ports:
+        - "5673:5672"
+        - "15673:15672"
+  node3:
+    build: ./rabbitmq-node
+    hostname: node3
+    environment:
+      - CLUSTER_WITH=node1
+      - RABBITMQ_ERLANG_COOKIE='supersecret'
+    links:
+    - node1
+    - node2
+    ports:
+        - "5674:5672"
