@@ -1,2 +1,2 @@
 # rabbitmq-docker-cluster
-As simple as possible layer over the offical rabbitmq docker image
+Simple layer on top of https://hub.docker.com/_/rabbitmq/ for running rabbitMQ in a cluster
