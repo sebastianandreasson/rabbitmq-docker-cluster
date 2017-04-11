@@ -35,7 +35,7 @@ setup_cluster() {
 	fi
 }
 
-rabbitmq-server &
+rabbitmq-server 2>&1 | tee /var/log/rabbitmq/rabbit\@$HOSTNAME.log &
 rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\@$HOSTNAME.pid
 
 setup_erlang_cookie
